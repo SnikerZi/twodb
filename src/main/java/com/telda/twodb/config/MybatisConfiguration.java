@@ -20,13 +20,13 @@ public class MybatisConfiguration {
 
     @Bean(name = FIRST_SESSION_FACTORY, destroyMethod = "")
     @Primary
-    public SqlSessionFactoryBean sqlSessionFactory(@Named(DatabaseConfiguration.FIRST_SESSION_FACTORY) final DataSource one) throws Exception {
+    public SqlSessionFactoryBean sqlSessionFactory(@Named(DatabaseConfiguration.First_datasource) final DataSource oneDataSource) throws Exception {
         final SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(oneDataSource);
         SqlSessionFactory sqlSessionFactory;
         sqlSessionFactory = sqlSessionFactoryBean.getObject();
         sqlSessionFactory.getConfiguration().addMapper(OneMapper.class);
-        // Various other SqlSessionFactory settings
+
         return sqlSessionFactoryBean;
     }
 
@@ -38,7 +38,7 @@ public class MybatisConfiguration {
     }
 
     @Bean(name = SECOND_SESSION_FACTORY, destroyMethod = "")
-    public SqlSessionFactoryBean censoSqlSessionFactory(@Named(DatabaseConfiguration.SECOND_SESSION_FACTORY) final DataSource anotherDataSource)
+    public SqlSessionFactoryBean censoSqlSessionFactory(@Named(DatabaseConfiguration.Second_datasource) final DataSource anotherDataSource)
             throws Exception {
         final SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(anotherDataSource);
